@@ -2,14 +2,14 @@
   "_id": {
     "$oid": "5f15d8852a025143f9593a7c"
   },
-  "image": "https://lh3.googleusercontent.com/proxy/PHMeEUxncFvxo71Hbw80j6G8IEv8CHaKUPMbfIAU_XfRTkc-S72ohLqMtiU0Ch-yZG9flgxaK1VXh0W4aIzZawc1Z2Yi",
-  "brand": "PS3",
+  "image": "https://dl.airtable.com/.attachmentThumbnails/55689693449c939b7e404074433189f2/bf24eea9",
+  "brand": "Tesco",
   "price": 250,
   "rating": 1,
   "numReviews": 0,
   "isFeatured": true,
-  "name": "FIFA 20",
-  "description": "The most hard FIFA ever",
+  "name": "Custard Biscuits",
+  "description": "The most crunchy biscuits",
   "category": {
     "$oid": "5f15d5cdcb4a6642bddc0fe9"
   },
@@ -70,14 +70,14 @@
   "_id": {
     "$oid": "5f15da13e520d44421ed8e9e"
   },
-  "image": "https://lh3.googleusercontent.com/proxy/ZqRo12bOfeU7xg7mTMfgENdMop_Zl9srLYDKeFilLCZkych8UO4ldDlRzT-8q5scq35krZsqxprZA85RdGLEVvejnPY4RRfNZ1eXDUJRoqHHRWBB5iMCx7UxT4l6iA",
-  "brand": "Mobilix",
+  "image": "https://dl.airtable.com/.attachmentThumbnails/eae727e40b32ac940103e4ddd702c165/e604399f",
+  "brand": "Asda",
   "price": 1000,
   "rating": 5,
   "numReviews": null,
   "isFeatured": true,
-  "name": "Sofa",
-  "description": "Big Sofa for living room",
+  "name": "Bourbon biscuits",
+  "description": "Big taste in the buds",
   "category": {
     "$oid": "5f15d5b2cb4a6642bddc0fe7"
   },

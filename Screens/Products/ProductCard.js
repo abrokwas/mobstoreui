@@ -8,14 +8,22 @@ const ProductCard = (props) => {
 
     return (
         <View style={styles.container} >
-            <Image style={styles.image} />
+            <Image 
+                style={styles.image} 
+                resizeMode="contain"
+                source= {{uri: image ? image : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'}}
+            />
             <View style={styles.card} />
             <Text style={styles.title} >
                 {name.length > 15 ? name.substring(0, 15 - 3) + '...' : name }
             </Text>
-            <Text style = {styles.price}>
-                £{price}
-            </Text>
+            <Text style = {styles.price}> £{price} </Text>
+
+            { countInStock > 0 ? (
+                <View style={{marginBottom: 60}} >
+                    <Button title={'Add'} color={'green'} />
+                </View>
+            ) : <Text style={{ marginTop:20 }} >Currently Unavailable</Text> }
         </View>
     )
 }

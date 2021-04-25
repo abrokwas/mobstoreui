@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View,Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native'
+import { View,Text, StyleSheet, ActivityIndicator, FlatList, ScrollView } from 'react-native'
 
 const data = require('../../assets/data/products.json')
 import ProductList from './ProductList'
@@ -20,17 +20,22 @@ const ProductContainer = () => {
     return(
         <View>
             <Text>Hello sam form Product container</Text>
+
+            <ScrollView>
             <View style={styles.listContainer}>
-              {products.map((item) => {
-               return(
-                   <ProductList
+                
+                    {products.map((item) => {
+                        return(
+                            <ProductList
                        
-                       key={item.name}
-                       item={item}
-                   />
-               )
-           })}
+                                key={item.name}
+                                item={item}
+                            />
+                        )
+                    })}
+                
             </View>
+            </ScrollView>
         </View>
     )
 }
