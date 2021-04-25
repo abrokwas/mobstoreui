@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { View,Text, StyleSheet, ActivityIndicator, FlatList, ScrollView } from 'react-native'
+import { View, StyleSheet, ActivityIndicator, FlatList, ScrollView } from 'react-native'
+import { Container, Header, Icon, Item, Input, Text } from 'native-base'
 
 const data = require('../../assets/data/products.json')
 import ProductList from './ProductList'
@@ -18,12 +19,20 @@ const ProductContainer = () => {
     }, [])
 
     return(
-        <View>
-            <Text>Hello sam form Product container</Text>
-
-            <ScrollView>
+        <Container>
+            <Header searchBar rounded>
+                <Item>
+                    <Icon name="ios-search"/>
+                    <Input 
+                        placeholder="Search"
+                        // onFocus= {}
+                        // onChangeText={(text) =>{}}
+                    />
+                </Item>
+            </Header>
+            <ScrollView style={styles.container}>
+                <Text>product container</Text>
             <View style={styles.listContainer}>
-                
                     {products.map((item) => {
                         return(
                             <ProductList
@@ -36,7 +45,7 @@ const ProductContainer = () => {
                 
             </View>
             </ScrollView>
-        </View>
+        </Container>
     )
 }
 
