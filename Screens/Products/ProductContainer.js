@@ -4,19 +4,36 @@ import { Container, Header, Icon, Item, Input, Text } from 'native-base'
 
 const data = require('../../assets/data/products.json')
 import ProductList from './ProductList'
+import SearchedProducts from './SearchedProducts'
 
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+    const [productsFiltered, setProductsFiltered] = useState ([]);
+    const [focus, setFocus ] = useState();
 
     useEffect(() => {
         setProducts(data);
+        setProductsFiltered(data);
+        setFocus(false);
 
         return () => {
-            setProducts([])
+            setProducts([]);
+            setProductsFiltered([]);
+            setFocus();
         }
     }, [])
+
+    const searchProduct = (text) => {
+        setProductsFiltered(
+            products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
+        )
+    }
+
+    const openList = () =>{ setFocus(true); }
+
+    const onBlur = () => { setFocus(false); }
 
     return(
         <Container>
@@ -25,14 +42,17 @@ const ProductContainer = () => {
                     <Icon name="ios-search"/>
                     <Input 
                         placeholder="Search"
-                        // onFocus= {}
-                        // onChangeText={(text) =>{}}
+                        onFocus= {openList}
+                        onChangeText={(text) => searchProduct(text)}
                     />
                 </Item>
             </Header>
-            <ScrollView style={styles.container}>
+            {focus == true ? (
+                <SearchedProducts productsFiltered = {productsFiltered} />
+            ) : (
+                <ScrollView style={styles.container}>
                 <Text>product container</Text>
-            <View style={styles.listContainer}>
+                <View style={styles.listContainer}>
                     {products.map((item) => {
                         return(
                             <ProductList
@@ -43,8 +63,10 @@ const ProductContainer = () => {
                         )
                     })}
                 
-            </View>
-            </ScrollView>
+                </View>
+                </ScrollView>
+            ) }
+            
         </Container>
     )
 }
