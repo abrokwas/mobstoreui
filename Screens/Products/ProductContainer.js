@@ -5,6 +5,7 @@ import { Container, Header, Icon, Item, Input, Text } from 'native-base'
 const data = require('../../assets/data/products.json')
 import ProductList from './ProductList'
 import SearchedProducts from './SearchedProducts'
+import Banner from '../../Shared/Banner'
 
 
 const ProductContainer = (props) => {
@@ -33,6 +34,8 @@ const ProductContainer = (props) => {
 
     const openList = () =>{ setFocus(true); }
 
+    
+
     const onBlur = () => { setFocus(false); }
 
     return(
@@ -45,14 +48,21 @@ const ProductContainer = (props) => {
                         onFocus= {openList}
                         onChangeText={(text) => searchProduct(text)}
                     />
+                    {(focus == true) ? (
+                        <Icon onPress = {onBlur} name="ios-close" />
+                    ): null}
                 </Item>
             </Header>
-            {focus == true ? (
+            
+            {(focus == true) ? (
                 <SearchedProducts productsFiltered = {productsFiltered} />
             ) : (
-                <ScrollView style={styles.container}>
-                <Text>product container</Text>
-                <View style={styles.listContainer}>
+                <View style={styles.container}>
+                    <View>
+                        <Banner/>
+                    </View>
+                <ScrollView>
+                    <View style={styles.listContainer}>
                     {products.map((item) => {
                         return(
                             <ProductList
@@ -65,6 +75,7 @@ const ProductContainer = (props) => {
                 
                 </View>
                 </ScrollView>
+                </View>
             ) }
             
         </Container>
