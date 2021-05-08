@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Image, StyleSheet, Dimensions, View, ScrollView } from 'react-native';
 import Swiper from 'react-native-swiper/src'
 
+
 var { width } = Dimensions.get('window');
 
 const Banner = () => {

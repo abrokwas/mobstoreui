@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { View, StyleSheet, ActivityIndicator, FlatList, ScrollView } from 'react-native'
 import { Container, Header, Icon, Item, Input, Text } from 'native-base'
 
-const data = require('../../assets/data/products.json')
+const Data = require('../../assets/data/products.json')
+const Categories = require('../../assets/data/categories.json')
 import ProductList from './ProductList'
 import SearchedProducts from './SearchedProducts'
 import Banner from '../../Shared/Banner'
+import CategoryFilter from '../Products/CategoryFilter'
 
 
 const ProductContainer = (props) => {
@@ -13,16 +15,25 @@ const ProductContainer = (props) => {
     const [products, setProducts] = useState([]);
     const [productsFiltered, setProductsFiltered] = useState ([]);
     const [focus, setFocus ] = useState();
+    const [categories, setCategories] = useState([]);
+    const [active, setActive] = useState();
+    const [initialState, setInitialSatte] = useState([]);
 
     useEffect(() => {
-        setProducts(data);
-        setProductsFiltered(data);
+        setProducts(Data);
+        setProductsFiltered(Data);
         setFocus(false);
+        setCategories(Categories);
+        setActive(-1);
+        setInitialSatte(Data);
 
         return () => {
             setProducts([]);
             setProductsFiltered([]);
             setFocus();
+            setCategories([]);
+            setActive();
+            setInitialSatte([]);
         }
     }, [])
 
@@ -57,9 +68,12 @@ const ProductContainer = (props) => {
             {(focus == true) ? (
                 <SearchedProducts productsFiltered = {productsFiltered} />
             ) : (
-                <View style={styles.container}>
+                <View >
                     <View>
                         <Banner/>
+                    </View>
+                    <View>
+                        <CategoryFilter />
                     </View>
                 <ScrollView>
                     <View style={styles.listContainer}>
