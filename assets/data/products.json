@@ -11,7 +11,7 @@
   "name": "Custard Biscuits",
   "description": "The most crunchy biscuits",
   "category": {
-    "$oid": "5f15d5cdcb4a6642bddc0fe9"
+    "$oid": "5f15d54cf3a046427a1c26e3"
   },
   "countInStock": 25,
   "__v": 0
@@ -62,7 +62,7 @@
   "name": "Grass Cut Machine",
   "description": "Grass Cut Machine for garden",
   "category": {
-    "$oid": "5f15d5b7cb4a6642bddc0fe8"
+    "$oid": "5f15d5cdcb4a6642bddc0fe9"
   },
   "countInStock": 5,
   "__v": 0
