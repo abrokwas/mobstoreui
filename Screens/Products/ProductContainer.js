@@ -88,7 +88,10 @@ const ProductContainer = (props) => {
       </Header>
 
       {focus == true ? (
-        <SearchedProducts productsFiltered={productsFiltered} />
+        <SearchedProducts
+          navigation={props.navigation}
+          productsFiltered={productsFiltered}
+        />
       ) : (
         <ScrollView>
           <View>
@@ -107,7 +110,13 @@ const ProductContainer = (props) => {
             {productsCtg.length > 0 ? (
               <View style={styles.listContainer}>
                 {productsCtg.map((item) => {
-                  return <ProductList key={item._id.$oid} item={item} />;
+                  return (
+                    <ProductList
+                      navigation={props.navigation}
+                      key={item._id.$oid}
+                      item={item}
+                    />
+                  );
                 })}
               </View>
             ) : (
