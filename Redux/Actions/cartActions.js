@@ -9,7 +9,7 @@ export const addToCart = (payload) => {
 
 export const removeFromCart = (payload) => {
   return {
-    type: ADD_TO_CART,
+    type: REMOVE_FROM_CART,
     payload,
   };
 };
