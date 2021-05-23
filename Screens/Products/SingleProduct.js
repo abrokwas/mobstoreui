@@ -8,6 +8,11 @@ import {
   Button,
 } from "react-native";
 import { Left, Right, Container, H1 } from "native-base";
+//access to the store before using the add actions
+//then map dispatch to props here as we will be using the actions
+//and hence the dispatch and finally connect update
+import { connect } from "react-redux";
+import * as actions from "../../Redux/Actions/cartActions";
 
 const SingleProduct = (props) => {
   const [item, setItem] = useState(props.route.params.item);
@@ -38,11 +43,23 @@ const SingleProduct = (props) => {
           <Text style={styles.price}>£ {item.price}</Text>
         </Left>
         <Right>
-          <Button title="Add" />
+          <Button
+            title="Add"
+            onPress={() => {
+              props.addItemToCart(props);
+            }}
+          />
         </Right>
       </View>
     </Container>
   );
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product) =>
+      dispatch(actions.addToCart({ quantity: 1, product })),
+  };
 };
 
 const styles = StyleSheet.create({
@@ -87,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SingleProduct;
+export default connect(null, mapDispatchToProps)(SingleProduct);
