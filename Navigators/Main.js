@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 //Stacks
 import HomeNavigator from "./HomeNavigator";
 import CartNavigator from "./CartNavigator";
+import CartIcon from "../Shared/CartIcon";
 import AdminNavigator from "./AdminNavigator";
 import UserNavigator from "./UserNavigator";
 
@@ -41,7 +42,10 @@ const Main = () => {
         component={CartNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="shopping-cart" color={color} size={30} />
+            <View>
+              <Icon name="shopping-cart" color={color} size={30} />
+              <CartIcon />
+            </View>
           ),
         }}
       />
