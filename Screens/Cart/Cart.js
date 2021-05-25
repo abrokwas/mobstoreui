@@ -16,6 +16,9 @@ import {
   Thumbnail,
   Body,
 } from "native-base";
+import { SwipeListView } from "react-native-swipe-list-view";
+import CartItem from "./CartItem";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 
 //onnect to store so we can have the state of the store here
@@ -39,34 +42,14 @@ const Cart = (props) => {
         <Container>
           <H1 style={{ alignSelf: "center" }}>Cart</H1>
           {props.cartItems.map((data) => {
-            return (
-              <ListItem style={styles.listItem} key={Math.random()} avatar>
-                <Left>
-                  <Thumbnail
-                    source={{
-                      uri: data.product.image
-                        ? data.product.image
-                        : "https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png",
-                    }}
-                  />
-                </Left>
-                <Body style={styles.body}>
-                  <Left>
-                    <Text>{data.product.name}</Text>
-                  </Left>
-                  <Right>
-                    <Text>£ {data.product.price}</Text>
-                  </Right>
-                </Body>
-              </ListItem>
-            );
+            return <CartItem item={data} />;
           })}
           <View style={styles.bottomContainer}>
             <Left>
               <Text style={styles.price}>£ {total}</Text>
             </Left>
             <Right>
-              <Button title="clear" />
+              <Button title="clear" onPress={() => props.clearCart()} />
             </Right>
             <Right>
               <Button
@@ -90,6 +73,12 @@ const mapStateToProps = (state) => {
   const { cartItems } = state;
   return {
     cartItems: cartItems,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearCart: () => dispatch(actions.clearCart()),
   };
 };
 
@@ -125,6 +114,11 @@ const styles = StyleSheet.create({
     height: 70,
     width: width / 1.2,
   },
+  body: {
+    margin: 10,
+    alignItems: "center",
+    flexDirection: "row",
+  },
 });
 
-export default connect(mapStateToProps, null)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
