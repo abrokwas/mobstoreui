@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Text, Left, Right, ListItem, Thumbnail, Body } from "native-base";
 
 const CartItem = (props) => {
-  const data = props.item;
+  const data = props.item.item.product;
   return (
     <ListItem style={styles.listItem} key={Math.random()} avatar>
       <Left>

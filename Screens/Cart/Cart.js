@@ -41,9 +41,27 @@ const Cart = (props) => {
       {props.cartItems.length ? (
         <Container>
           <H1 style={{ alignSelf: "center" }}>Cart</H1>
-          {props.cartItems.map((data) => {
-            return <CartItem item={data} />;
-          })}
+          <SwipeListView
+            data={props.cartItems}
+            renderItem={(data) => <CartItem item={data} />}
+            renderHiddenItem={(data) => (
+              <View style={styles.hiddenContainer}>
+                <TouchableOpacity
+                  style={styles.hiddenButton}
+                  onPress={() => props.removeFromCart(data.item)}
+                >
+                  <Icon name="trash" color={"white"} size={30} />
+                </TouchableOpacity>
+              </View>
+            )}
+            disableRightSwipe={true}
+            previewOpenDelay={3000}
+            friction={1000}
+            tension={40}
+            leftOpenValue={75}
+            stopLeftSwipe={75}
+            rightOpenValue={-75}
+          />
           <View style={styles.bottomContainer}>
             <Left>
               <Text style={styles.price}>£ {total}</Text>
@@ -79,6 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     clearCart: () => dispatch(actions.clearCart()),
+    removeFromCart: (item) => dispatch(actions.removeFromCart(item)),
   };
 };
 
