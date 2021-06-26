@@ -53,7 +53,6 @@ const Checkout = (props) => {
       shippingAddress1: address,
       shippingAddress2: address2,
       status: "3",
-      user,
       zip,
     };
 
