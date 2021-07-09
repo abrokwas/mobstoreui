@@ -8,7 +8,10 @@ import {
 } from "react-native";
 import { Container, Header, Icon, Item, Input, Text } from "native-base";
 
-const data = require("../../assets/data/products.json");
+import baseUrl from "../../assets/common/baseUrl";
+import axios from "axios";
+
+//const data = require("../../assets/data/products.json");
 const productsCategories = require("../../assets/data/categories.json");
 import ProductList from "./ProductList";
 import SearchedProducts from "./SearchedProducts";
@@ -27,13 +30,16 @@ const ProductContainer = (props) => {
   const [initialState, setInitialState] = useState([]);
 
   useEffect(() => {
-    setProducts(data);
-    setProductsFiltered(data);
     setFocus(false);
     setCategories(productsCategories);
-    setProductsCtg(data);
     setActive(-1);
-    setInitialState(data);
+
+    axios.get(`${baseUrl}products`).then((res) => {
+      setProducts(res.data);
+      setProductsFiltered(res.data);
+      setProductsCtg(res.data);
+      setInitialState(res.data);
+    });
 
     return () => {
       setProducts([]);
