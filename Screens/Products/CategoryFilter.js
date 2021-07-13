@@ -5,7 +5,7 @@ import { ListItem, Badge, Text } from "native-base";
 const CategoryFilter = (props) => {
   return (
     <ScrollView
-      bounce={true}
+      bounces={true}
       horizontal={true}
       style={{ backgroundColor: "#f2f2f2" }}
     >
