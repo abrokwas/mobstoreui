@@ -12,7 +12,7 @@ import baseUrl from "../../assets/common/baseUrl";
 import axios from "axios";
 
 //const data = require("../../assets/data/products.json");
-const productsCategories = require("../../assets/data/categories.json");
+//const productsCategories = require("../../assets/data/categories.json");
 import ProductList from "./ProductList";
 import SearchedProducts from "./SearchedProducts";
 import Banner from "../../Shared/Banner";
@@ -31,15 +31,29 @@ const ProductContainer = (props) => {
 
   useEffect(() => {
     setFocus(false);
-    setCategories(productsCategories);
     setActive(-1);
+    //products
+    axios
+      .get(`${baseUrl}products`)
+      .then((res) => {
+        setProducts(res.data);
+        setProductsFiltered(res.data);
+        setProductsCtg(res.data);
+        setInitialState(res.data);
+      })
+      .catch((error) => {
+        console.log("Api call error");
+      });
 
-    axios.get(`${baseUrl}products`).then((res) => {
-      setProducts(res.data);
-      setProductsFiltered(res.data);
-      setProductsCtg(res.data);
-      setInitialState(res.data);
-    });
+    //categories
+    axios
+      .get(`${baseUrl}categories`)
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((error) => {
+        console.log("Api call error");
+      });
 
     return () => {
       setProducts([]);
@@ -72,7 +86,7 @@ const ProductContainer = (props) => {
         ? [setProductsCtg(initialState), setActive(true)]
         : [
             setProductsCtg(
-              products.filter((i) => i.category.$oid === ctg),
+              products.filter((i) => i.category._id === ctg),
               setActive(true)
             ),
           ];
