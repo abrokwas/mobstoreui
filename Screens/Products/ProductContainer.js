@@ -17,7 +17,7 @@ import SearchedProduct from "./SearchedProducts";
 import Banner from "../../Shared/Banner";
 import CategoryFilter from "./CategoryFilter";
 
-//var { height } = Dimensions.get("window");
+var { height } = Dimensions.get("window");
 
 const ProductContainer = (props) => {
   const [products, setProducts] = useState([]);
