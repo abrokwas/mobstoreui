@@ -1,12 +1,8 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 
 const UserProfile = () => {
-  return (
-    <View>
-      <Text>User Profile Page</Text>;
-    </View>
-  );
+  return <Text>User Profile Page</Text>;
 };
 
 export default UserProfile;
